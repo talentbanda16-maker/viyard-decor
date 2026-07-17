@@ -1,0 +1,174 @@
+/* --- Contact Page Header --- */
+.contact-header {
+    background-color: #1e3e2b;
+    color: #ffffff;
+    text-align: center;
+    padding: 50px 24px;
+    margin-bottom: 40px;
+}
+
+.contact-header h1 {
+    font-size: 36px;
+    margin-bottom: 10px;
+    font-family: 'Playfair Display', serif;
+}
+
+.contact-header p {
+    font-size: 15px;
+    max-width: 500px;
+    margin: 0 auto;
+    color: #a7f3d0;
+}
+
+/* --- Content Grid Layout --- */
+.contact-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+    margin-bottom: 80px;
+    padding: 0 20px;
+}
+
+/* --- Left Column: Info Cards --- */
+.contact-info h2 {
+    font-size: 24px;
+    color: #1e3e2b;
+    font-family: 'Playfair Display', serif;
+    margin-bottom: 10px;
+}
+
+.info-intro {
+    font-size: 14px;
+    color: #718096;
+    margin-bottom: 30px;
+}
+
+.info-cards-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* Styled info links that feel like interactive blocks */
+.info-card {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    border: 1px solid #e5e7eb;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.info-card:not(.no-link):hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    border-color: #1e3e2b;
+}
+
+.info-icon {
+    font-size: 24px;
+    background-color: #f0fdfa;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.info-text h3 {
+    font-size: 16px;
+    color: #1e3e2b;
+    margin: 0 0 4px 0;
+}
+
+.info-text p {
+    font-size: 14px;
+    color: #4a5568;
+    margin: 0;
+}
+
+/* --- Right Column: Form Card --- */
+.contact-form-card {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e5e7eb;
+}
+
+.contact-form-card h2 {
+    font-size: 22px;
+    color: #1e3e2b;
+    margin-bottom: 20px;
+    font-family: 'Playfair Display', serif;
+    border-bottom: 2px solid #f3f4f6;
+    padding-bottom: 8px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #4a5568;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.form-group textarea {
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    padding: 14px;
+    border: 1.5px solid #cbd5e0;
+    border-radius: 8px;
+    outline: none;
+    background-color: #fcfdfd;
+    color: #2d3748;
+    transition: all 0.2s ease;
+    resize: none;
+}
+
+.form-group textarea:focus {
+    border-color: #1e3e2b;
+    background-color: #ffffff;
+    box-shadow: 0 0 0 3px rgba(30, 62, 43, 0.1);
+}
+
+/* --- Send Button --- */
+.btn-submit {
+    display: block;
+    width: 100%;
+    background-color: #1e3e2b;
+    color: #ffffff;
+    border: none;
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    text-align: center;
+}
+
+.btn-submit:hover {
+    background-color: #10b981; /* Turns WhatsApp Green */
+}
+
+/* --- Responsiveness: Side-by-Side Grid --- */
+@media (min-width: 768px) {
+    .contact-container {
+        grid-template-columns: 1fr 1.2fr;
+        gap: 50px;
+    }
+}

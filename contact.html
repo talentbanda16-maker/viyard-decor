@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Vineyard Event & Decor</title>
+    
+    <link rel="stylesheet" href="styles/index.css">
+    <link rel="stylesheet" href="styles/contact.css">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght=0,400..900;1,400..900&family=Poppins:wght=300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="container header-nav">
+            <div class="logo">Vineyard</div>
+            <nav class="menu-links">
+                <a href="index.html">HOME</a>
+                <a href="services.html">SERVICES</a>
+                <a href="booking.html">BOOK NOW</a>
+                <a href="contact.html" class="active">CONTACT</a>
+            </nav>
+            <a href="booking.html" class="btn btn-header">Book Now</a>
+        </div>
+    </header>
+
+    <section class="contact-header">
+        <div class="container">
+            <h1>Get In Touch</h1>
+            <p>Have questions about our packages or custom setups? We would love to hear from you!</p>
+        </div>
+    </section>
+
+    <main class="container contact-container">
+        
+        <div class="contact-info">
+            <h2>Our Details</h2>
+            <p class="info-intro">Feel free to reach out to us using any of the methods below for a quick response.</p>
+            
+            <div class="info-cards-list">
+                <a href="tel:+263784325634" class="info-card">
+                    <span class="info-icon">📞</span>
+                    <div class="info-text">
+                        <h3>Call Us</h3>
+                        <p>+263 78 432 5634</p>
+                    </div>
+                </a>
+
+                <a href="mailto:info@vineyardevents.com" class="info-card">
+                    <span class="info-icon">✉️</span>
+                    <div class="info-text">
+                        <h3>Email Us</h3>
+                        <p>info@vineyardevents.com</p>
+                    </div>
+                </a>
+
+                <div class="info-card no-link">
+                    <span class="info-icon">📍</span>
+                    <div class="info-text">
+                        <h3>Our Location</h3>
+                        <p>Mutare, Zimbabwe</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="contact-form-card">
+            <h2>Send Us a Message</h2>
+            
+            <form action="https://wa.me/263784325634" method="GET" target="_blank">
+                <div class="form-group">
+                    <label for="text">Your Message</label>
+                    <textarea 
+                        name="text" 
+                        id="text" 
+                        rows="8" 
+                        placeholder="Hi Vineyard! I have a question regarding..." 
+                        required></textarea>
+                </div>
+
+                <button type="submit" class="btn-submit">
+                    Send to WhatsApp 💬
+                </button>
+            </form>
+        </div>
+
+    </main>
+
+</body>
+</html>

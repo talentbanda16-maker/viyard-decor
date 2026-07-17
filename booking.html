@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Your Setup - Vineyard Event & Decor</title>
+    
+    <link rel="stylesheet" href="styles/index.css">
+    <link rel="stylesheet" href="styles/booking.css">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght=0,400..900;1,400..900&family=Poppins:wght=300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="container header-nav">
+            <div class="logo">Vineyard</div>
+            <nav class="menu-links">
+                <a href="index.html">HOME</a>
+                <a href="services.html">SERVICES</a>
+                <a href="booking.html" class="active">BOOK NOW</a>
+                <a href="contact.html">CONTACT</a>
+            </nav>
+            <a href="booking.html" class="btn btn-header">Book Now</a>
+        </div>
+    </header>
+
+    <section class="booking-header">
+        <div class="container">
+            <h1>Book Your Experience</h1>
+            <p>Your details are automatically saved as you type so you never lose your progress!</p>
+        </div>
+    </section>
+
+    <main class="container booking-container">
+        <div class="form-card">
+            <h2>Booking Details</h2>
+            
+            <form id="bookingForm">
+                <div class="form-group">
+                    <label for="userName">My Name</label>
+                    <input type="text" id="userName" placeholder="Enter your full name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="userPackage">Package</label>
+                    <select id="userPackage" required>
+                        <option value="" disabled selected>-- Choose a Package --</option>
+                        <optgroup label="Luxury Picnics">
+                            <option value="vvip-picnic">VVIP Picnic Setup — $80</option>
+                            <option value="signature-romance">Signature Romance Picnic — $80</option>
+                        </optgroup>
+                        <optgroup label="Birthday Events">
+                            <option value="birthday-dinner">Luxury Birthday Dinner Table — $150</option>
+                            <option value="roora-picnic">Roora Picnic Setup — $95</option>
+                        </optgroup>
+                        <optgroup label="Outdoors Picnics">
+                            <option value="standard-outdoor">Standard Outdoor Set — $50</option>
+                            <option value="group-sunshine">Group Sunshine Setup — $75</option>
+                        </optgroup>
+                        <optgroup label="Roora Events">
+                            <option value="roora-main-table">Elegant Main Table Decor — $250</option>
+                            <option value="roora-backdrop-1">Complete Roora Stage Backdrop (Option 1) — $350</option>
+                            <option value="roora-backdrop-2">Complete Roora Stage Backdrop (Option 2) — $350</option>
+                            <option value="roora-backdrop-3">Complete Roora Stage Backdrop (Option 3) — $350</option>
+                            <option value="roora-backdrop-4">Complete Roora Stage Backdrop (Option 4) — $350</option>
+                        </optgroup>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="userDate">Preferred Date</label>
+                    <input type="date" id="userDate" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="userTime">Setup Time</label>
+                    <input type="time" id="userTime" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="userNotes">Any Special Requests</label>
+                    <textarea id="userNotes" rows="4" placeholder="E.g., Preferred color themes, balloon colors..."></textarea>
+                </div>
+
+                <button type="submit" class="btn-submit">
+                    Send Booking via WhatsApp 💬
+                </button>
+            </form>
+
+        </div>
+    </main>
+
+    <script>
+        const formFields = ['userName', 'userPackage', 'userDate', 'userTime', 'userNotes'];
+
+        // 1. Load saved data from localStorage and handle incoming URL package parameter
+        window.addEventListener('DOMContentLoaded', () => {
+            // Fill general fields from localStorage
+            formFields.forEach(fieldId => {
+                const savedValue = localStorage.getItem(fieldId);
+                if (savedValue && fieldId !== 'userPackage') {
+                    document.getElementById(fieldId).value = savedValue;
+                }
+            });
+
+            // Check URL parameters for a package selection
+            const urlParams = new URLSearchParams(window.location.search);
+            const packageFromUrl = urlParams.get('package');
+            const packageDropdown = document.getElementById('userPackage');
+
+            if (packageFromUrl) {
+                // If the user clicked "Book Now" from services, prioritize that package choice
+                packageDropdown.value = packageFromUrl;
+                localStorage.setItem('userPackage', packageFromUrl);
+            } else {
+                // Otherwise fall back to a previously stored package selection if one exists
+                const savedPackage = localStorage.getItem('userPackage');
+                if (savedPackage) {
+                    packageDropdown.value = savedPackage;
+                }
+            }
+        });
+
+        // 2. Automatically SAVE the data locally to the browser as the user types
+        formFields.forEach(fieldId => {
+            document.getElementById(fieldId).addEventListener('input', (e) => {
+                localStorage.setItem(fieldId, e.target.value);
+            });
+        });
+
+        // 3. Form submission: Package everything up and send it to WhatsApp
+        document.getElementById('bookingForm').addEventListener('submit', function(e) {
+            e.preventDefault(); // Prevents page reload
+
+            // Grab current data values
+            const name = document.getElementById('userName').value;
+            const dropdown = document.getElementById('userPackage');
+            // Grabs the plain text value inside the selected option tag for readable logs over text
+            const packageText = dropdown.options[dropdown.selectedIndex].text; 
+            const date = document.getElementById('userDate').value;
+            const time = document.getElementById('userTime').value;
+            const notes = document.getElementById('userNotes').value || "None";
+
+            // Format message neatly
+            const message = `Hi Vineyard! I would like to make a booking.%0A%0A` +
+                            `*My Name:* ${encodeURIComponent(name)}%0A` +
+                            `*Package:* ${encodeURIComponent(packageText)}%0A` +
+                            `*Preferred Date:* ${encodeURIComponent(date)}%0A` +
+                            `*Setup Time:* ${encodeURIComponent(time)}%0A` +
+                            `*Any special requests:* ${encodeURIComponent(notes)}`;
+
+            // Redirect to your WhatsApp number
+            window.open(`https://wa.me/263784325634?text=${message}`, '_blank');
+        });
+    </script>
+
+</body>
+</html>
